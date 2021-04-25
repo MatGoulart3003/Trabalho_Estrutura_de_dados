@@ -35,6 +35,7 @@ public class List {
         while(aux != null) {
 
             builder.append("(").append(aux.peca.getNum1());
+            builder.append(",");
             builder.append(aux.peca.getNum2()).append(")");
             builder.append("  ");
             
@@ -111,7 +112,8 @@ public class List {
 	        
 	        return RemovePeca;
 	    }
-	
+	 
+	 
 	
 }
 
