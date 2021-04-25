@@ -32,12 +32,28 @@ public class StartApp {
 		
 		System.out.println(list1.getAsString());
 		System.out.println(list2.getAsString());
-		
 		System.out.println(list1.remove("(0,0)"));
 		System.out.println(list1.getAsString());
 		System.out.println(list1.remove("(5,5)"));
 		System.out.println(list1.getAsString());
+		
+		Peca aux = list1.remove("(4,4)");
+		aux.setNum1(2);
+		aux.setNum2(1);
+		System.out.println(list1.getAsString());
+		list1.jogada(aux);
+		System.out.println(list1.getAsString());
+		Peca aux2 = list1.remove("(4,4)");
+		System.out.println(aux2);
+		System.out.println(list1.getAsString());
+		aux2 = list1.remove("(6,6)");
+		System.out.println(list1.getAsString());
+		aux2.setNum1(7);
+		aux2.setNum2(3);
+		list1.jogada(aux2);
+		System.out.println(list1.getAsString());
 
+		
 		
 		
 	}

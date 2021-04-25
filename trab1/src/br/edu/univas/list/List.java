@@ -72,7 +72,7 @@ public class List {
 	 	 
 	 public Peca remove(String name) {
 		 
-	        System.out.println("Removendo o produto: " + name);
+	        System.out.println("Removendo a peça: " + name);
 	        if(head == null) { 
 	            return null; 
 	        }
@@ -113,7 +113,30 @@ public class List {
 	        return RemovePeca;
 	    }
 	 
-	 
+	 public void jogada(Peca peca) {
+		 
+		 if (head.peca.getNum1() == peca.getNum1() || head.peca.getNum1() == peca.getNum2()) {
+			 
+			 Node novoNode = new Node();
+			 head.previous = novoNode;
+			 novoNode.peca = peca;
+			 novoNode.next = head;
+			 head = novoNode;
+			 
+		 }else if (last.peca.getNum2() == peca.getNum1() || last.peca.getNum2() == peca.getNum2()) {
+			 
+			 Node novoNode = new Node();
+			 last.next = novoNode;
+			 novoNode.peca = peca;
+			 novoNode.previous = last;
+			 last = novoNode;
+			 
+		 }else {
+			 System.out.println("Movimento não permitido");
+		 }
+		 
+		 
+	 }
 	
 }
 
