@@ -78,22 +78,23 @@ public class List {
 	        }
 
 	        Node aux = head;
-	        Node previous = head.previous;
-	        
+	        Node previous = aux.previous;
+	       	        
 	        while(aux != null) {
 	            if(aux.peca.toString().equals(name)) {
-	                break;
+	               break;
 	            }
 	            previous = aux;
 	            aux = aux.next;
 	        }
-
+	      
 	        if(aux == null) { 
 	            return null; 
 	        }
 	        
 	        Peca RemovePeca = aux.peca;
-
+	        
+	        
 	        if(this.head == this.last) { 
 	            return RemovePeca;
 	        }
@@ -101,13 +102,11 @@ public class List {
 	        if(previous == null) {
 	            head = aux.next; 
 	        } else {
-	            previous.next = aux.next;
+	            System.out.println(previous.next);   
+	        	previous.next = aux.next;
+	        	System.out.println(previous);
+	            this.last = previous;
 	            
-	            aux.next.previous = previous;
-	            
-	            if(aux.next == null) {
-	                this.last = previous.next;
-	            }
 	        }
 	        
 	        return RemovePeca;
@@ -115,26 +114,34 @@ public class List {
 	 
 	 public void jogada(Peca peca) {
 		 
-		 if (head.peca.getNum1() == peca.getNum1() || head.peca.getNum1() == peca.getNum2()) {
-			 
-			 Node novoNode = new Node();
-			 head.previous = novoNode;
-			 novoNode.peca = peca;
-			 novoNode.next = head;
-			 head = novoNode;
-			 
-		 }else if (last.peca.getNum2() == peca.getNum1() || last.peca.getNum2() == peca.getNum2()) {
-			 
-			 Node novoNode = new Node();
-			 last.next = novoNode;
-			 novoNode.peca = peca;
-			 novoNode.previous = last;
-			 last = novoNode;
-			 
-		 }else {
-			 System.out.println("Movimento não permitido");
-		 }
 		 
+		 
+		 if (peca != null) {
+			 
+			 if (head.peca.getNum1() == peca.getNum1() || head.peca.getNum1() == peca.getNum2()) {
+				 
+				 Node novoNode = new Node();
+				 head.previous = novoNode;
+				 novoNode.peca = peca;
+				 novoNode.next = head;
+				 head = novoNode;
+				 
+			 }else if (last.peca.getNum2() == peca.getNum1() || last.peca.getNum2() == peca.getNum2()) {
+				 
+				 Node novoNode = new Node();
+				 last.next = novoNode;
+				 novoNode.peca = peca;
+				 novoNode.previous = last;
+				 last = novoNode;
+				 
+			 }else {
+				 System.out.println("Movimento não permitido");
+			 }
+		 }else {
+
+			 System.out.println("Movimento nao permitido");
+			  
+		 }
 		 
 	 }
 	
