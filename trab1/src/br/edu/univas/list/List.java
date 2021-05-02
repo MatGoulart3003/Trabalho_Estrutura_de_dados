@@ -71,7 +71,7 @@ public class List {
 	        return null;
 	    }
 	 	 
-	public Peca remove(String name) {
+	public Peca remove (String name) {
 		 
 	      
 	        if(head == null) { 
@@ -122,20 +122,46 @@ public class List {
 	        return RemovePeca;
 	    }
 	
-	public void jogada(Peca peca) {
-		 
-		if (peca != null) {
-			 
-			 if (head.peca.getNum1() == peca.getNum1() || head.peca.getNum1() == peca.getNum2()) {
-				 
-				 Node novoNode = new Node();
-				 head.previous = novoNode;
-				 novoNode.peca = peca;
-				 novoNode.next = head;
-				 head = novoNode;
-				 
+	public boolean move (List list, Peca peca) {
+		
+		boolean auxiliar = false;
+		
+		if (peca != null) { 
+		
+			
+			if (list.head == null) {
+			list.insert(peca);
+			auxiliar = true;
+			
+			}else if (head.peca.getNum1() == peca.getNum1() || head.peca.getNum1() == peca.getNum2()) {
+				
+				auxiliar = true; 
+				
+				if(head.peca.getNum1() == peca.getNum1()) {
+					int aux = peca.getNum1();
+					int aux2 = peca.getNum2();
+					peca.setNum2(aux);
+					peca.setNum1(aux2);
+					
+				}
+				Node novoNode = new Node();
+				head.previous = novoNode;
+				novoNode.peca = peca;
+				novoNode.next = head;
+				head = novoNode;
+				
+				
 			 }else if (last.peca.getNum2() == peca.getNum1() || last.peca.getNum2() == peca.getNum2()) {
 				 
+				 auxiliar = true;
+				 
+				 if(last.peca.getNum2() == peca.getNum2()) {
+						int aux = peca.getNum1();
+						int aux2 = peca.getNum2();
+						peca.setNum2(aux);
+						peca.setNum1(aux2);
+						
+				}
 				 Node novoNode = new Node();
 				 last.next = novoNode;
 				 novoNode.peca = peca;
@@ -143,6 +169,7 @@ public class List {
 				 last = novoNode;
 				 
 			 }else {
+				 
 				 System.out.println("Movimento não permitido");
 			 }
 		 }else {
@@ -151,6 +178,7 @@ public class List {
 			  
 		 }
 		 
+		return auxiliar;
 	 }
 	
 	public void createPeaces () {
@@ -187,12 +215,11 @@ public class List {
 			if(aux == null) {
 				break;
 			}
-			System.out.println(auxiliar);
+			
 		}
 		
 		for (int i = 0; i < 7; i++) {
 			int rand = 1 + (int) (Math.random() * auxiliar);
-			System.out.println(rand);
 			peca = getElementAt(rand);
 			peca = remove(peca.toString());
 			list.insert(peca);
