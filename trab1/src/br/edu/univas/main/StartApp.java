@@ -1,8 +1,6 @@
 package br.edu.univas.main;
 
 import br.edu.univas.list.List;
-import br.edu.univas.list.Peca;
-
 
 public class StartApp {
 	
@@ -13,6 +11,7 @@ public class StartApp {
 		List list3 = new List();
 		
 		list1.createPeaces();
+		
 		System.out.println(list1.getAsString());
 		list1.setPeaces(list2);
 		System.out.println(list1.getAsString());

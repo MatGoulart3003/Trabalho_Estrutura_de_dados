@@ -1,6 +1,5 @@
 package br.edu.univas.list;
 
-import java.util.Random;
 
 public class List {
 	
@@ -78,23 +77,26 @@ public class List {
 	        if(head == null) { 
 	            return null; 
 	        }
-
-	        Node aux = head;
-	        Node previous = aux.previous;
+	        
+	       
+	        Node current = head;
+	        Node previous = head.previous;
+	        Node next = head.next;
 	       	        
-	        while(aux != null) {
-	            if(aux.peca.toString().equals(name)) {
+	        while(current != null) {
+	            if(current.peca.toString().equals(name)) {
 	               break;
 	            }
-	            previous = aux;
-	            aux = aux.next;
+	            previous = current;
+	            current = current.next;
+	            next = next.next;
 	        }
 	      
-	        if(aux == null) { 
+	        if(current == null) { 
 	            return null; 
 	        }
 	        
-	        Peca RemovePeca = aux.peca;
+	        Peca RemovePeca = current.peca;
 	        
 	        
 	        if(this.head == this.last) { 
@@ -102,15 +104,18 @@ public class List {
 	        }
 
 	        if(previous == null) {
-	            head = aux.next; 
-	       
+	            head = next; 
+	            next.previous = null;
 	        } else {
-	           
-	        	previous.next = aux.next;
 	        	
-	            if (aux.next == null);
-	           
-	            this.last = aux.previous;
+	        	if (current.next != null) {
+	        		previous.next = next;
+	        	    next.previous = previous;
+	        	} else{
+	        		
+		            this.last = previous;
+		           	previous.next = null;
+	        	}
 	            
 	        }
 	        
@@ -176,7 +181,7 @@ public class List {
 		int auxiliar = 0;
 			
 		while (!aux.peca.toString().equals(aux2.peca.toString())) {
-			System.out.println(aux);
+			
 			aux = aux.next;
 			auxiliar++;
 			if(aux == null) {
@@ -187,7 +192,7 @@ public class List {
 		
 		for (int i = 0; i < 7; i++) {
 			int rand = 1 + (int) (Math.random() * auxiliar);
-			
+			System.out.println(rand);
 			peca = getElementAt(rand);
 			peca = remove(peca.toString());
 			list.insert(peca);
@@ -199,6 +204,7 @@ public class List {
 	
 	
 	}
+
 	
 	
 	
