@@ -1,5 +1,7 @@
 package br.edu.univas.list;
 
+import java.util.Random;
+
 public class List {
 	
 	
@@ -44,25 +46,25 @@ public class List {
         return builder.toString();
     }
 
-	 private Node getNodeAt(int index) {
-	        if(index < 0) {
-	            return null;
-	        }
-	       
-	        int i = 0;
-	        Node aux = head;
-	        while(aux != null) {
-	            
-	            if(index == i) {
-	                return aux;
-	            }
-	            i++; 
-	            aux = aux.next; 
-	        }
+	private Node getNodeAt(int index) {
+		if(index < 0) {
 	        return null;
 	    }
+	       
+	    int i = 0;
+	    Node aux = head;
+	    while(aux != null) {
+	            
+	        if(index == i) {
+	            return aux;
+	        }
+	        i++; 
+	        aux = aux.next; 
+	    }
+	    return null;
+	}
 	
-	 public Peca getElementAt(int index) {
+	public Peca getElementAt(int index) {
 	        Node node = getNodeAt(index);
 	        if(node != null) {
 	            return node.peca;
@@ -70,9 +72,9 @@ public class List {
 	        return null;
 	    }
 	 	 
-	 public Peca remove(String name) {
+	public Peca remove(String name) {
 		 
-	        System.out.println("Removendo a peça: " + name);
+	      
 	        if(head == null) { 
 	            return null; 
 	        }
@@ -101,22 +103,23 @@ public class List {
 
 	        if(previous == null) {
 	            head = aux.next; 
+	       
 	        } else {
-	            System.out.println(previous.next);   
+	           
 	        	previous.next = aux.next;
-	        	System.out.println(previous);
-	            this.last = previous;
+	        	
+	            if (aux.next == null);
+	           
+	            this.last = aux.previous;
 	            
 	        }
 	        
 	        return RemovePeca;
 	    }
-	 
-	 public void jogada(Peca peca) {
+	
+	public void jogada(Peca peca) {
 		 
-		 
-		 
-		 if (peca != null) {
+		if (peca != null) {
 			 
 			 if (head.peca.getNum1() == peca.getNum1() || head.peca.getNum1() == peca.getNum2()) {
 				 
@@ -144,6 +147,60 @@ public class List {
 		 }
 		 
 	 }
+	
+	public void createPeaces () {
+		
+		int aux = 0;
+		
+		for (int i = 0; i < 7; i++) {
+			
+			for(int j = 0; j+aux < 7; j++) {
+				
+				Peca novaPeca = new Peca();
+				novaPeca.setNum1(i);
+				novaPeca.setNum2(j+aux);
+				insert(novaPeca);
+							
+			}
+			aux++;
+		}
+	
+	}
+	
+	public void setPeaces(List list) {
+		
+		Node aux = head;
+		Node aux2 = last;
+		Peca peca;
+		
+		int auxiliar = 0;
+			
+		while (!aux.peca.toString().equals(aux2.peca.toString())) {
+			System.out.println(aux);
+			aux = aux.next;
+			auxiliar++;
+			if(aux == null) {
+				break;
+			}
+			System.out.println(auxiliar);
+		}
+		
+		for (int i = 0; i < 7; i++) {
+			int rand = 1 + (int) (Math.random() * auxiliar);
+			
+			peca = getElementAt(rand);
+			peca = remove(peca.toString());
+			list.insert(peca);
+			auxiliar--;
+		}
+		
+		
+		
+	
+	
+	}
+	
+	
 	
 }
 
