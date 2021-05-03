@@ -26,10 +26,10 @@ public class View {
 	
 	public void Playing (){
 		
-		System.out.println("Sua vez de jogar!!");
+		System.out.println("\nSua vez de jogar!!");
 		System.out.println("Essas são suas peças!");
-		System.out.println("Escolha uma delas usando: 0 para a primeira, 1 para a segunda e assim consecutivamente:");
-	
+		System.out.println("Escolha uma delas usando: 1 para a primeira, 2 para a segunda e assim consecutivamente:");
+		System.out.println("");
 	}
 	
 }

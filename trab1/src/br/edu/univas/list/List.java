@@ -28,7 +28,7 @@ public class List {
 
 	public String getAsString() {
         if(head == null) {
-            return "Sua lista de peças está vazia!";
+            return "Você jogou todas as suas peças";
         }
         StringBuilder builder = new StringBuilder();
             
@@ -100,6 +100,8 @@ public class List {
 	        
 	        
 	        if(this.head == this.last) { 
+	            this.head = null;
+	            this.last = null;
 	            return RemovePeca;
 	        }
 
@@ -200,23 +202,11 @@ public class List {
 	
 	}
 	
-	public void setPeaces(List list) {
+	public void setPeaces(List list, List mainList) {
 		
-		Node aux = head;
-		Node aux2 = last;
 		Peca peca;
 		
-		int auxiliar = 0;
-			
-		while (!aux.peca.toString().equals(aux2.peca.toString())) {
-			
-			aux = aux.next;
-			auxiliar++;
-			if(aux == null) {
-				break;
-			}
-			
-		}
+		int auxiliar = listLength(mainList);
 		
 		for (int i = 0; i < 7; i++) {
 			int rand = 1 + (int) (Math.random() * auxiliar);
@@ -226,15 +216,27 @@ public class List {
 			auxiliar--;
 		}
 		
-		
-		
-	
-	
 	}
 
+	public int listLength (List list) {
+		
+		Node aux = list.head;
+		Node aux2 = list.last;
+		
+		int auxiliar = 0;
+		
+		while (!aux.peca.toString().equals(aux2.peca.toString())) {
+			
+			aux = aux.next;
+			auxiliar++;
+			if(aux == null) {
+				break;
+			}
+		}
+		
+		return auxiliar;
 	
-	
-	
+	}
 }
 
 	

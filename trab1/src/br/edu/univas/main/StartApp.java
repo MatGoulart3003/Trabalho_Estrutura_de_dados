@@ -22,9 +22,10 @@ public class StartApp {
 		
 		
 		todasAsPecas.createPeaces();
-		todasAsPecas.setPeaces(pecasPlayer);
-		todasAsPecas.setPeaces(pecasBot);
+		todasAsPecas.setPeaces(pecasPlayer,todasAsPecas);
+		todasAsPecas.setPeaces(pecasBot, todasAsPecas);
 		vo.StartGame(pecasPlayer);
+		
 		int option = 0;
 		
 		do {
@@ -43,28 +44,72 @@ public class StartApp {
 			
 			do {
 				
-				gameplayPlayer(pecasPlayer, pecasJogadas);
-				gameplayPlayer(pecasPlayer, pecasJogadas);
-				gameplayPlayer(pecasPlayer, pecasJogadas);
-				gameplayPlayer(pecasPlayer, pecasJogadas);
-				gameplayPlayer(pecasPlayer, pecasJogadas);
-				gameplayPlayer(pecasPlayer, pecasJogadas);
-				gameplayPlayer(pecasPlayer, pecasJogadas);
-				gameplayPlayer(pecasPlayer, pecasJogadas);
-				gameplayPlayer(pecasPlayer, pecasJogadas);
-				
-				
-				GameOver = true;
+				GameOver = gameplayPlayer(pecasPlayer, pecasJogadas);
+				GameOver = gameplayBot(pecasBot, pecasJogadas);
+											
 			}while(GameOver == false);
 			
 		}
 		
-		
+		System.out.println("terminei com o game Over");
 		
 		
 		scan.close();
 	}
 	
+	private static boolean gameplayBot(List list, List pecasJogadas) {
+		
+		String valida = "Você jogou todas as suas peças";
+		
+		boolean gameFinished = false;
+		boolean aux = false;
+		
+		Peca peca;
+		
+		int number = 0;
+		
+		
+		while (true) {
+			
+			int isValid = list.listLength(list);
+			
+			if (number <= isValid) {
+				
+				peca = list.getElementAt(number);
+		
+				aux = pecasJogadas.move(pecasJogadas, peca);
+				
+				if (aux == true) {
+				
+					peca = list.remove(peca.toString());
+					System.out.println("Sua vez!");
+					break;
+				
+				}else {
+				
+					number++;
+				}
+			}else {
+				
+				System.out.println("O Bot passou a vez!");
+				
+				break;	
+			
+			}
+			
+					
+		}
+		
+		System.out.println(pecasJogadas.getAsString());
+		if (valida.equals(list.getAsString())) {
+			
+			gameFinished = true;
+			
+		}
+		
+		return gameFinished;
+	}
+
 	public static int readInt () {
 		
 		int number = scan.nextInt();
@@ -72,25 +117,46 @@ public class StartApp {
 		return number;
 	}
 	
-	public static void gameplayPlayer (List list, List pecasJogadas) {
+	public static boolean gameplayPlayer (List list, List pecasJogadas) {
 		
+		String valida = "Você jogou todas as suas peças";
+		boolean gameFinished = false;
 		Peca peca;
 		int number;
 		
 		vo.Playing();
-		System.out.println(list.getAsString());
 		
-		number = readInt();
-		number--;
+		while(true) {
+		
+			System.out.println(list.getAsString());
+			number = readInt();
+			number--;
+			int isValid = list.listLength(list);
+			
+			if (number <= isValid && number >= 0) {
+				break;
+			}
+			
+			System.out.println("Numero de Peça inválida, digite um numero válido");
+			
+		}
+		
+		
+		
 		peca = list.getElementAt(number);
 		boolean aux = pecasJogadas.move(pecasJogadas, peca);
 		if (aux == true) {
 			peca = list.remove(peca.toString());
 		}
 		
-		
-		
 		System.out.println(pecasJogadas.getAsString());
+		if (valida.equals(list.getAsString())) {
+			
+			gameFinished = true;
+			
+		}
+	
+		return gameFinished;
 	}
 	
 	
