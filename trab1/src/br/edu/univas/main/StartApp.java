@@ -21,9 +21,9 @@ public class StartApp {
 		boolean GameOver = false;
 		
 		
-		todasAsPecas.createPeaces();
-		todasAsPecas.setPeaces(pecasPlayer,todasAsPecas);
-		todasAsPecas.setPeaces(pecasBot, todasAsPecas);
+		todasAsPecas.createPieces();
+		todasAsPecas.setPieces(pecasPlayer,todasAsPecas);
+		todasAsPecas.setPieces(pecasBot, todasAsPecas);
 		vo.StartGame(pecasPlayer);
 		
 		int option = 0;
@@ -130,7 +130,7 @@ public class StartApp {
 			
 			}else {
 				System.out.println("\nO BOT PASSOU A VEZ!!\n");
-				insertRandonPeace(list, todasAsPecas);
+				insertRandonPiece(list, todasAsPecas);
 				break;
 			
 			}
@@ -178,13 +178,13 @@ public class StartApp {
 				
 				if (number == 200) {
 					
-					buyPeace(list, todasAsPecas);
+					buyPiece(list, todasAsPecas);
 					System.out.println("Voce passou a vez");
 					break;
 				
 				}else if (number == 300) {
 					
-					buyPeace(list,todasAsPecas);
+					buyPiece(list,todasAsPecas);
 					continue;
 					
 				}else {
@@ -231,7 +231,7 @@ public class StartApp {
 		return gameFinished;
 	}
 	
-	public static void insertRandonPeace (List list, List todasAsPecas) {
+	public static void insertRandonPiece (List list, List todasAsPecas) {
 		
 		int number = todasAsPecas.listLength(todasAsPecas);;
 		Peca peca;
@@ -244,7 +244,7 @@ public class StartApp {
 		
 	}
 	
-	public static void buyPeace (List list, List todasAsPecas) {
+	public static void buyPiece (List list, List todasAsPecas) {
 		
 		Peca peca;
 		int number;

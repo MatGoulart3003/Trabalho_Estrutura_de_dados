@@ -176,7 +176,7 @@ public class List {
 		return auxiliar;
 	 }
 	
-	public void createPeaces () {
+	public void createPieces () {
 		
 		int aux = 0;
 		
@@ -195,7 +195,7 @@ public class List {
 	
 	}
 	
-	public void setPeaces(List list, List mainList) {
+	public void setPieces(List list, List mainList) {		
 		
 		Peca peca;
 		
