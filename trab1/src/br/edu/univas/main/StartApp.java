@@ -45,7 +45,10 @@ public class StartApp {
 			do {
 				
 				GameOver = gameplayPlayer(pecasPlayer, pecasJogadas, todasAsPecas);
-				GameOver = gameplayBot(pecasBot, pecasJogadas, todasAsPecas);
+				if (GameOver == false) {
+					GameOver = gameplayBot(pecasBot, pecasJogadas, todasAsPecas);
+				}
+				
 											
 			}while(GameOver == false);
 			
@@ -135,16 +138,13 @@ public class StartApp {
 				
 				if (number == 200) {
 					
-					System.out.println("Escolha uma peça usando: 1 para a primeira, 2 para a segunda e assim consecutivamente:");
 					buyPeace(list, todasAsPecas);
 					System.out.println("Voce passou a vez");
 					break;
 				
 				}else if (number == 300) {
 					
-					System.out.println("Escolha uma peça usando: 1 para a primeira, 2 para a segunda e assim consecutivamente:");
 					buyPeace(list,todasAsPecas);
-							
 					continue;
 					
 				}else {
@@ -165,6 +165,7 @@ public class StartApp {
 				if (aux == true) {
 					
 					peca = list.remove(peca.toString());
+					
 					if (valida.equals(list.getAsString())) {
 						
 						gameFinished = true;
@@ -189,7 +190,6 @@ public class StartApp {
 	
 		return gameFinished;
 	}
-	
 	
 	public static void insertRandonPeace (List list, List todasAsPecas) {
 		
