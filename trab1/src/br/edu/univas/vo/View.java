@@ -50,5 +50,13 @@ public class View {
 		System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		
 	}
-
+	
+	public void youLose () {
+		System.out.println("QUE BAD HEIM CARA, VOCÊ PERDEU!");
+	}
+	
+	public void youWin() {
+		System.out.println("PARABÉNS PLAYER 1, VOCÊ É O GRANDE VENCEDOR!!!!");
+	}
+	
 }

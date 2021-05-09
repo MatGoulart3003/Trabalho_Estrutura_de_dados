@@ -33,20 +33,60 @@ public class StartApp {
 			vo.CaraCoroa();
 			option = readInt();
 			
-			if (option > 2) {
+			if (option > 2 || option <= 0) {
 				System.out.println("\n\nOpção incorreta, Escolha um numero entre 1 e 2!");
 				
 			}
 			
 		}while (option != 1 && option != 2);
-		//int rand = 1 + (int) (Math.random() * 2);	
-		if (option == 1) {
+		
+		int rand = 1 + (int) (Math.random() * 2);	
+		
+		if (option == rand) {
 			
 			do {
 				
 				GameOver = gameplayPlayer(pecasPlayer, pecasJogadas, todasAsPecas);
-				if (GameOver == false) {
+				
+				if (GameOver == false) { //Player não ganhou
+				
 					GameOver = gameplayBot(pecasBot, pecasJogadas, todasAsPecas);
+					
+					if (GameOver == true) { //Bot ganhando
+						
+						vo.youLose();
+						
+					}
+					
+				}else {
+					
+					vo.youWin();
+					
+				}
+				
+											
+			}while(GameOver == false);
+			
+		}else {
+			
+			do {
+				
+				GameOver = gameplayBot(pecasBot, pecasJogadas, todasAsPecas);
+				
+				if (GameOver == false) {
+				
+					GameOver = gameplayPlayer(pecasPlayer, pecasJogadas, todasAsPecas);
+					
+					if (GameOver == true) { //Bot ganhando
+						
+						vo.youWin();
+						
+					}
+					
+				}else{
+					
+					vo.youWin();
+					
 				}
 				
 											
@@ -54,7 +94,7 @@ public class StartApp {
 			
 		}
 		
-		System.out.println("terminei com o game Over");
+		System.out.println("\nJOGO ENCERRADO MEU CHAPA");
 		
 		
 		scan.close();
