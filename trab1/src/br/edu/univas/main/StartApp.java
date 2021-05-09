@@ -44,8 +44,8 @@ public class StartApp {
 			
 			do {
 				
-				GameOver = gameplayPlayer(pecasPlayer, pecasJogadas);
-				GameOver = gameplayBot(pecasBot, pecasJogadas);
+				GameOver = gameplayPlayer(pecasPlayer, pecasJogadas, todasAsPecas);
+				GameOver = gameplayBot(pecasBot, pecasJogadas, todasAsPecas);
 											
 			}while(GameOver == false);
 			
@@ -57,18 +57,14 @@ public class StartApp {
 		scan.close();
 	}
 	
-	private static boolean gameplayBot(List list, List pecasJogadas) {
+	private static boolean gameplayBot(List list, List pecasJogadas, List todasAsPecas) {
 		
 		String valida = "Você jogou todas as suas peças";
-		
 		boolean gameFinished = false;
 		boolean aux = false;
-		
 		Peca peca;
-		
 		int number = 0;
-		
-		
+			
 		while (true) {
 			
 			int isValid = list.listLength(list);
@@ -76,31 +72,30 @@ public class StartApp {
 			if (number <= isValid) {
 				
 				peca = list.getElementAt(number);
-		
 				aux = pecasJogadas.move(pecasJogadas, peca);
 				
 				if (aux == true) {
 				
 					peca = list.remove(peca.toString());
-					System.out.println("Sua vez!");
+					System.out.println("Sua vez!\n");
 					break;
 				
 				}else {
 				
 					number++;
 				}
+			
 			}else {
-				
-				System.out.println("O Bot passou a vez!");
-				
-				break;	
+				System.out.println("\nO BOT PASSOU A VEZ!!\n");
+				insertRandonPeace(list, todasAsPecas);
+				break;
 			
 			}
 			
 					
 		}
+		vo.pecasNaMesa(pecasJogadas);
 		
-		System.out.println(pecasJogadas.getAsString());
 		if (valida.equals(list.getAsString())) {
 			
 			gameFinished = true;
@@ -117,7 +112,7 @@ public class StartApp {
 		return number;
 	}
 	
-	public static boolean gameplayPlayer (List list, List pecasJogadas) {
+	public static boolean gameplayPlayer (List list, List pecasJogadas, List todasAsPecas) {
 		
 		String valida = "Você jogou todas as suas peças";
 		boolean gameFinished = false;
@@ -127,38 +122,100 @@ public class StartApp {
 		vo.Playing();
 		
 		while(true) {
-		
+			
+			System.out.println("SUAS PEÇAS SÃO:");
 			System.out.println(list.getAsString());
 			number = readInt();
+			
+			if (number == 100) {
+				
+				vo.pecasParaComprar(todasAsPecas);
+				
+				number = readInt();
+				
+				if (number == 200) {
+					
+					System.out.println("Escolha uma peça usando: 1 para a primeira, 2 para a segunda e assim consecutivamente:");
+					buyPeace(list, todasAsPecas);
+					System.out.println("Voce passou a vez");
+					break;
+				
+				}else if (number == 300) {
+					
+					System.out.println("Escolha uma peça usando: 1 para a primeira, 2 para a segunda e assim consecutivamente:");
+					buyPeace(list,todasAsPecas);
+							
+					continue;
+					
+				}else {
+					
+					System.out.println("Opção inválida, selecione uma solução válida, ");
+					
+				}
+			}
+			
 			number--;
 			int isValid = list.listLength(list);
 			
 			if (number <= isValid && number >= 0) {
-				break;
+				
+				peca = list.getElementAt(number);
+				boolean aux = pecasJogadas.move(pecasJogadas, peca);
+				
+				if (aux == true) {
+					
+					peca = list.remove(peca.toString());
+					if (valida.equals(list.getAsString())) {
+						
+						gameFinished = true;
+						
+					}
+					
+					break;
+				
+				}else {
+					System.out.println("Essa peça não é jogavel agora, selecione outra peça!");
+					continue;
+				}
+				
+				
 			}
 			
 			System.out.println("Numero de Peça inválida, digite um numero válido");
 			
 		}
+		vo.pecasNaMesa(pecasJogadas);
 		
-		
-		
-		peca = list.getElementAt(number);
-		boolean aux = pecasJogadas.move(pecasJogadas, peca);
-		if (aux == true) {
-			peca = list.remove(peca.toString());
-		}
-		
-		System.out.println(pecasJogadas.getAsString());
-		if (valida.equals(list.getAsString())) {
-			
-			gameFinished = true;
-			
-		}
 	
 		return gameFinished;
 	}
 	
+	
+	public static void insertRandonPeace (List list, List todasAsPecas) {
+		
+		int number = todasAsPecas.listLength(todasAsPecas);;
+		Peca peca;
+		
+		number = 1 + (int) (Math.random() * number);
+		peca = todasAsPecas.getElementAt(number);
+		peca = todasAsPecas.remove(peca.toString());
+		list.insert(peca);
+		
+		
+	}
+	
+	public static void buyPeace (List list, List todasAsPecas) {
+		
+		Peca peca;
+		int number;
+
+		System.out.println("Escolha uma peça usando: 1 para a primeira, 2 para a segunda e assim consecutivamente:");
+		number = readInt();
+		number--;
+		peca = todasAsPecas.getElementAt(number);
+		peca = todasAsPecas.remove(peca.toString());
+		list.insert(peca);		
+	}
 	
 }
 

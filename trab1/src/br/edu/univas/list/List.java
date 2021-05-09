@@ -170,14 +170,7 @@ public class List {
 				 novoNode.previous = last;
 				 last = novoNode;
 				 
-			 }else {
-				 
-				 System.out.println("Movimento não permitido");
 			 }
-		 }else {
-
-			 System.out.println("Movimento nao permitido");
-			  
 		 }
 		 
 		return auxiliar;
@@ -225,6 +218,9 @@ public class List {
 		
 		int auxiliar = 0;
 		
+		if (aux == null) {
+			return auxiliar = 100;
+		}
 		while (!aux.peca.toString().equals(aux2.peca.toString())) {
 			
 			aux = aux.next;
@@ -237,6 +233,9 @@ public class List {
 		return auxiliar;
 	
 	}
+
+
+
 }
 
 	
