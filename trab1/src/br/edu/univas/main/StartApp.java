@@ -1,7 +1,4 @@
 package br.edu.univas.main;
-
-
-
 import java.util.Scanner;
 
 import br.edu.univas.list.List;
@@ -9,6 +6,7 @@ import br.edu.univas.list.Peca;
 import br.edu.univas.vo.View;
 
 public class StartApp {
+
 	static Scanner scan = new Scanner(System.in);
 	static View vo = new View ();
 	public static void main(String[] args) {
