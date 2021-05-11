@@ -10,5 +10,6 @@ Assim o jogo irá se desenrolando, as peças em modelo (num1,num2) terá uma ló
 Para o desevolvimento da logica utilizei 4 listas duplamente encadeadas: Uma lista total, com todas as 28 peças disponíveis pra jogo; uma segunda lista para as peças do Player; uma terceira lista para as peças do Bot; e uma quarta lista que serão as peças jogadas à mesa.
 
 O objetivo final do jogo é jogar todas as suas peças da mão na mesa, porém acontecerá situações que você não terá peças disponiveis que sejam compativeis com o jogo, então foi implementado uma mecânica para que o Player ou o Bot possam comprar as peças daquela primeira lista em que foram tiradas e distribuidas as primeiras 7 peças.
+O Bot fará a compra de apenas uma peça aleatória da primeira lista, já o jogador poderá escolher qual peça irá comprar.
 
 O jogo terminará assim que um dos jogadores jogar todas as peças na sua mão, e o programa se encerrará.
